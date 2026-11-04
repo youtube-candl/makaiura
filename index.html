@@ -2,155 +2,351 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>⚡️☠️† 漆黒の裏・暗黒黙示録 †☠️⚡️ 〜キリ番踏み逃げは呪います〜</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>☆★ 2000年代風・超激ヤバ魔界リアルタイムBBS ★☆</title>
     <style>
-        /* 悪夢のようなグラデーション背景（当時のチープなGIF壁紙の代わり） */
+        /* 2000年代インターネットの様式美 */
+        * {
+            font-family: "MS UI Gothic", "MS PGothic", sans-serif;
+            box-sizing: border-box;
+        }
         body {
-            background: linear-gradient(45deg, #ff00ff, #000000, #00ffff, #000000, #ffff00);
-            background-size: 400% 400%;
-            animation: Gradient 3s ease infinite;
-            cursor: crosshair; /* マウスを十字に変更 */
+            background-color: #000000;
+            background-image: linear-gradient(0deg, transparent 24%, rgba(0, 255, 0, .05) 25%, rgba(0, 255, 0, .05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 0, .05) 75%, rgba(0, 255, 0, .05) 76%, transparent 77%), linear-gradient(90deg, transparent 24%, rgba(0, 255, 0, .05) 25%, rgba(0, 255, 0, .05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 0, .05) 75%, rgba(0, 255, 0, .05) 76%, transparent 77%);
+            background-size: 50px 50px;
+            color: #00FF00;
+            margin: 0;
+            padding: 10px;
         }
-        @keyframes Gradient {
-            0% { background-position: 0% 50% }
-            50% { background-position: 100% 50% }
-            100% { background-position: 0% 50% }
+        /* レインボーに輝く魔法のタイトル */
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            background: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow-move 3s linear infinite;
+            text-shadow: 2px 2px 0px #ffffff;
+            margin-bottom: 5px;
         }
-
-        /* 悪名高き ぷるぷる・チカチカする文字 */
-        .blink {
-            animation: blinkEffect 0.5s infinite alternate;
+        @keyframes rainbow-move {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
         }
-        @keyframes blinkEffect {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-
-        /* マウスストーカー用のスタイル */
-        .stalker {
-            position: absolute;
-            pointer-events: none;
+        .subtitle {
+            text-align: center;
+            color: #FF00FF;
             font-weight: bold;
             font-size: 14px;
+            margin-bottom: 15px;
+        }
+        /* 懐かしのキリ番カウンター */
+        .counter-container {
+            text-align: center;
+            margin: 15px 0;
+            font-size: 16px;
+        }
+        .counter-box {
+            background-color: #222;
+            border: 3px inset #666;
+            color: #FFFF00;
+            padding: 3px 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        /* メインコンテナ */
+        .main-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 4px ridge #FF00FF;
+            background-color: #111111;
+            padding: 15px;
+        }
+        /* チャット表示エリア */
+        .chat-area {
+            height: 350px;
+            overflow-y: scroll;
+            border: 3px inset #00FF00;
+            background-color: #050505;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        /* 各メッセージの装飾 */
+        .msg-box {
+            border-bottom: 1px dashed #444;
+            padding: 6px 0;
+            line-height: 1.4;
+            font-size: 13px;
+        }
+        .msg-header {
+            font-weight: bold;
+        }
+        .msg-num { color: #00FFFF; }
+        .msg-name { color: #FFFF00; }
+        .msg-date { color: #888888; font-size: 11px; }
+        .msg-body {
+            margin-top: 4px;
+            padding-left: 15px;
+            word-break: break-all;
+            white-space: pre-wrap;
+        }
+        /* 投稿フォーム */
+        fieldset {
+            border: 2px groove #00FFFF;
+            padding: 10px;
+            background-color: #1a1a1a;
+        }
+        legend {
+            color: #00FFFF;
+            font-weight: bold;
+            padding: 0 5px;
+        }
+        .form-row {
+            margin-bottom: 8px;
+        }
+        label {
+            display: inline-block;
+            width: 80px;
             color: #FF00FF;
-            text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF;
-            z-index: 9999;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        input[type="text"], select, textarea {
+            background-color: #000000;
+            border: 2px inset #555;
+            color: #ffffff;
+            padding: 3px;
+            font-size: 12px;
+        }
+        input[type="text"]:focus, select:focus, textarea:focus {
+            outline: 1px solid #00FF00;
+            background-color: #112211;
+        }
+        .btn-submit {
+            background: linear-gradient(#555, #000);
+            color: #00FF00;
+            border: 2px raised #888;
+            border-style: outset;
+            padding: 5px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            display: block;
+            width: 100%;
+            box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+        }
+        .btn-submit:active {
+            border-style: inset;
+            background: linear-gradient(#000, #333);
+        }
+        /* 魔法のキラキラエフェクト用 */
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: fly 0.8s linear forwards;
+        }
+        @keyframes fly {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--mx), var(--my)) scale(0); opacity: 0; }
         }
     </style>
 </head>
-<body text="#00FF00" link="#FFFF00" vlink="#FF00FF" alink="#FF0000" oncontextmenu="alert('⚠️警告⚠️\nソースコードを盗もうとしましたね？\nあなたのIPアドレスとプロバイダ情報は記録されました。');return false;">
+<body>
 
-    <!-- 謎の自動再生BGM（当時はMIDI、現在はブラウザ仕様でクリック後に再生されるダミー） -->
-    <iframe src="https://example.com" allow="autoplay" style="display:none" id="iframeAudio"></iframe>
+    <!-- 懐かしの爆走流れる文字 -->
+    <marquee scrollamount="6" bgcolor="#FF0000" style="color: #ffffff; font-weight: bold; padding: 3px; font-size: 12px;">
+        【!!!重要!!!】荒らし・厨コメ・無断転載は絶対にアク禁にします！！マナーを守って逝ってね！！！裏口チャット設置しました☆
+    </marquee>
 
-    <center>
-        <!-- 上部：激しい警告 -->
-        <marquee scrollamount="20" bgcolor="#FFFF00"><font color="#FF0000" size="5"><b>⚠️!! WARNING !! 18歳未満および心臓の弱い方は直ちにブラウザバックしてください !! WARNING !!⚠️</b></font></marquee>
+    <h1>◆◇ 魔界リアルタイム闇BBS ◇◆</h1>
+    <div class="subtitle">〜† 漆黒の翼を広げし迷い子たちの集い場 †〜</div>
 
-        <br>
-        <!-- レインボーに輝く（文字ごとに色を変える）洗礼 -->
-        <h1>
-            <font color="#FF0000">†</font><font color="#FF7F00">魔</font><font color="#FFFF00">界</font><font color="#00FF00">へ</font><font color="#00FFFF">よ</font><font color="#0000FF">う</font><font color="#8B00FF">こ</font><font color="#FF00FF">そ</font><font color="#FF0000">†</font>
-        </h1>
+    <div class="counter-container">
+        <blink style="color: #FF00FF; font-weight: bold;">★YOU ARE THE</blink>
+        <span class="counter-box">007654</span>
+        <blink style="color: #FF00FF; font-weight: bold;">号の生贄★ (キリ番報告必須!!)</blink>
+    </div>
 
-        <!-- 炎のGIF画像を模した文字 -->
-        <div style="background: url('https://giphy.com'); -webkit-background-clip: text; color: transparent; font-size: 40px; font-weight: bold;">
-            🔥 DEATH ZONE 🔥
+    <div class="main-container">
+        <!-- チャットログエリア -->
+        <div class="chat-area" id="chatArea">
+            <div class="msg-box">
+                <span class="msg-header">
+                    <span class="msg-num">[1]</span> 
+                    <span class="msg-name"><b>管理人★ダークエルフ</b></span> 
+                    <span class="msg-date">2006/07/07(金) 02:45:12</span>
+                </span>
+                <div class="msg-body" style="color: #00FF00;">ここが新しいリアルタイム魔界の溜まり場だぜ…！常時接続（ADSL/ISDN）推奨！みんなカキコよろしくな！！</div>
+            </div>
         </div>
 
-        <br>
-        <!-- 点滅するカウンター -->
-        <p class="blink">
-            <font size="5" color="#FF00FF"><b>あなたは、第 <font size="7" color="#00FFFF">［ 00066699 ］</font> 柱目の生贄です…</b></font>
-        </p>
+        <!-- カキコフォーム -->
+        <form id="chatForm" onsubmit="return false;">
+            <fieldset>
+                <legend>† 魂の刻印（カキコ）フォーム †</legend>
+                
+                <div class="form-row">
+                    <label for="username">ハンドルネーム:</label>
+                    <input type="text" id="username" value="名無しの迷い子" style="width: 200px;" maxlength="15">
+                </div>
 
-        <!-- 往年の「壁紙と同化して読めない」フォントサイズ1のBBSルール -->
-        <font size="1" color="#111111">※荒らしは電脳警察に通報します。足跡を残さない奴はアク禁。BBSでのギャル文字使用禁止。</font>
+                <div class="form-row">
+                    <label for="textColor">文字の属性（色）:</label>
+                    <select id="textColor">
+                        <option value="#00FF00" style="color:#00FF00; background:#0">深緑の毒樹（標準グリーン）</option>
+                        <option value="#FF00FF" style="color:#FF00FF; background:#0">魔界ピンク（ド派手マゼンタ）</option>
+                        <option value="#00FFFF" style="color:#00FFFF; background:#0">蒼穹のシアン（電脳ライトブルー）</option>
+                        <option value="#FFFF00" style="color:#FFFF00; background:#0">煉獄の稲妻（熱狂イエロー）</option>
+                        <option value="#FF3333" style="color:#FF3333; background:#0">紅蓮の鮮血（狂気レッド）</option>
+                        <option value="#FFFFFF" style="color:#FFFFFF; background:#0">無垢なる混沌（ピュアホワイト）</option>
+                    </select>
+                </div>
 
-        <br><br>
+                <div class="form-row">
+                    <label for="message" style="vertical-align: top;">メッセージ:</label>
+                    <textarea id="message" rows="3" style="width: calc(100% - 90px);" placeholder="ここに闇の言葉を紡げ…（Enterで送信可能）" required></textarea>
+                </div>
 
-        <!-- 3重スクロールの波 -->
-        <marquee direction="right" scrollamount="12"><font color="#00FFFF">⏩⏩ 相互リンク100%募集中!!! ⏪&lt;</font></marquee>
-        <marquee direction="left" scrollamount="8"><font color="#FF00FF">⏪⏪ キリ番「66666」前後賞あり!!! ⏩⏩</font></marquee>
+                <button type="button" class="btn-submit" id="sendBtn">送信する（魔界へ召喚）</button>
+            </fieldset>
+        </form>
+    </div>
 
-        <br>
+    <p style="text-align: center; font-size: 11px; color: #666; margin-top: 20px;">
+        推奨ブラウザ：Internet Explorer 6.0 / 画面解像度：1024x768推奨<br>
+        (C) 2000-2006 Dark Web-BBS Production. All Rights Reserved.
+    </p>
 
-        <!-- メインコンテンツを囲むサイケデリックな枠 -->
-        <table border="10" bordercolor="#FF0000" bgcolor="#000000" width="80%" cellpadding="20" style="border-style: double;">
-            <tr>
-                <td align="center">
-                    <font size="5" color="#00FF00"><b>✨ ☠️ MAIN MENU ☠️ ✨</b></font>
-                    <hr color="#FF00FF">
-                    <br>
-                    <font size="4">
-                        <a href="javascript:alert('閉じるボタンを押しても無駄だぞ★')">✝ 黒歴史プロフィール ✝</a> <img src="https://wikimedia.org" alt="NEW"><br><br>
-                        <a href="javascript:alert('ウイルスバスターが感知しました（嘘）')">✝ 闇の小説・ポエム ✝</a><br><br>
-                        <a href="javascript:alert('入室パスワード：【ruria14】')">✝ 秘密の隠しチャット（常連専用） ✝</a><br><br>
-                        <a href="javascript:alert('書き込まないと呪われます')">✝ 狂気の掲示板（BBS） ✝</a><br><br>
-                        <a href="javascript:alert('100の質問に答えてみたよ')">✝ リアルな足跡帳 ✝</a>
-                    </font>
-                </td>
-            </tr>
-        </table>
-
-        <br><br>
-
-        <!-- 素材屋への感謝リンク（バナーはリンク切れで画像が出ないお約束） -->
-        <font size="2">
-            お借りしている素敵素材屋様（直リンク厳禁！）<br>
-            <img src="missing_banner.gif" alt="† 漆黒の素材館 †" border="0"><br>
-            <img src="missing_banner2.gif" alt="† 薔薇のワルツ †" border="0">
-        </font>
-
-        <br><br>
-        
-        <!-- ページ最下部の「隠しリンク」 -->
-        <p>＼(^o^)／</p>
-        <font size="1"><a href="javascript:alert('おめでとう！隠し裏サイト『† 堕天使の聖域 †』への入り口を見つけたぞ！パスワードは【0721】だ！')"><font color="#222222">.</font></a></font>
-        <br>
-
-    </center>
-
-    <!-- ★ JavaScript：マウスストーカー（カーソルを文字が追いかける）★ -->
+    <!-- 💡ここから無料のPubNubを使ったリアルタイム超同期通信スクリプト💡 -->
+    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.7.2.2.min.js"></script>
     <script>
-        const text = "†漆黒の闇†"; // 追いかけてくる恐怖の文字列
-        const delay = 15; // 遅れてついてくる速度
-        let mouseX = 0, mouseY = 0;
-        const divs = [];
-
-        // 文字を1文字ずつ分割して画面に配置
-        for (let i = 0; i < text.length; i++) {
-            const div = document.createElement('div');
-            div.className = 'stalker';
-            div.innerText = text[i];
-            document.body.appendChild(div);
-            divs.push({ element: div, x: 0, y: 0 });
-        }
-
-        // マウスの座標を取得
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.pageX;
-            mouseY = e.pageY;
+        // 🔮無料の公開テスト用デモキー（誰でもすぐに使える共有キーです）
+        const pubnub = new PubNub({
+            publishKey: 'pub-c-5154388b-201a-4d92-bbbe-e2d93e176b91',
+            subscribeKey: 'sub-c-52cb10f0-c5fb-11e9-9a74-9a88eb88e02d',
+            userId: 'user_' + Math.random().toString(36).substring(2, 9)
         });
 
-        // アニメーションループ（前の文字を追いかけるように動く）
-        function animateStalker() {
-            let targetX = mouseX + 15;
-            let targetY = mouseY + 15;
+        const CHANNEL_NAME = 'retro_2000s_chat_room';
+        const chatArea = document.getElementById('chatArea');
+        const usernameInput = document.getElementById('username');
+        const textColorSelect = document.getElementById('textColor');
+        const messageInput = document.getElementById('message');
+        const sendBtn = document.getElementById('sendBtn');
 
-            for (let i = 0; i < divs.length; i++) {
-                const div = divs[i];
-                div.x += (targetX - div.x) / (delay + i);
-                div.y += (targetY - div.y) / (delay + i);
-                div.element.style.left = div.x + 'px';
-                div.element.style.top = div.y + 'px';
+        let msgCounter = 2; // [1]は管理人なので2からスタート
 
-                targetX = div.x + 12; // 次の文字の間隔
-                targetY = div.y;
+        // 📥 サーバーからメッセージを受信したときの処理
+        pubnub.addListener({
+            message: function(event) {
+                const data = event.message;
+                renderMessage(data.name, data.text, data.color, data.time);
             }
-            requestAnimationFrame(animateStalker);
+        });
+
+        // 📡 チャンネルの監視を開始＋過去ログの取得
+        pubnub.subscribe({
+            channels: [CHANNEL_NAME]
+        });
+
+        // 🕒 過去のログ（最大50件）を自動ロードする
+        pubnub.fetchMessages({
+            channels: [CHANNEL_NAME],
+            count: 50
+        }, function(status, response) {
+            if (response && response.channels && response.channels[CHANNEL_NAME]) {
+                const messages = response.channels[CHANNEL_NAME];
+                messages.forEach(msg => {
+                    const data = msg.message;
+                    renderMessage(data.name, data.text, data.color, data.time);
+                });
+            }
+        });
+
+        // 🛠 画面にメッセージをド派手に召喚する関数
+        function renderMessage(name, text, color, timeStr) {
+            const msgBox = document.createElement('div');
+            msgBox.className = 'msg-box';
+            
+            // 特殊文字のエスケープ（セキュリティ対策）
+            const cleanName = escapeHTML(name);
+            const cleanText = escapeHTML(text);
+
+            msgBox.innerHTML = `
+                <span class="msg-header">
+                    <span class="msg-num">[${msgCounter++}]</span>
+                    <span class="msg-name"><b>${cleanName}</b></span>
+                    <span class="msg-date">${timeStr}</span>
+                </span>
+                <div class="msg-body" style="color: ${color};">${cleanText}</div>
+            `;
+            
+            chatArea.appendChild(msgBox);
+            chatArea.scrollTop = chatArea.scrollHeight; // 最下部へ自動スクロール
         }
-        animateStalker();
+
+        // 📤 メッセージを送信（パブリッシュ）する処理
+        function sendMessage() {
+            const text = messageInput.value.trim();
+            if (!text) return;
+
+            const now = new Date();
+            const timeStr = `${now.getFullYear()}/${String(now.getMonth()+1).padStart(2,'0')}/${String(now.getDate()).padStart(2,'0')}(水) ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
+
+            // PubNubの宇宙へデータを射出
+            pubnub.publish({
+                channel: CHANNEL_NAME,
+                message: {
+                    name: usernameInput.value || '名無しの迷い子',
+                    text: text,
+                    color: textColorSelect.value,
+                    time: timeStr
+                }
+            });
+
+            messageInput.value = ''; // フォームを空に
+            messageInput.focus();
+        }
+
+        // 送信イベントの紐付け
+        sendBtn.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // HTMLエスケープ関数
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+            }[tag] || tag));
+        }
+
+        // ✨ オマケ：マウスの後ろをキラキラ追従するキモいエフェクト ✨
+        const colors = ['#00FF00', '#FF00FF', '#00FFFF', '#FFFF00', '#FF3333'];
+        document.addEventListener('mousemove', function(e) {
+            if (Math.random() > 0.15) return; // 発生量をちょっと抑える
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = e.pageX + 'px';
+            sparkle.style.top = e.pageY + 'px';
+            sparkle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // 飛び散る方向をランダムに
+            const mx = (Math.random() - 0.5) * 40 + 'px';
+            const my = (Math.random() - 0.5) * 40 + 'px';
+            sparkle.style.setProperty('--mx', mx);
+            sparkle.style.setProperty('--my', my);
+
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 800);
+        });
     </script>
 </body>
 </html>
