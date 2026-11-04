@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <script>
+    // ログイン画面のURL（自分の環境に合わせて書き換えてください）
+    const loginPage = "login.html";
+
+    // 前のページのURLを確認
+    if (!document.referrer.includes(loginPage)) {
+      window.location.href = loginPage;
+    }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>☆★ 2000年代風・超激ヤバ魔界リアルタイムBBS ★☆</title>
+    <title>☆★ 超激ヤバ魔界リアルタイムBBS ★☆</title>
     <style>
         /* 2000年代インターネットの様式美 */
         * {
