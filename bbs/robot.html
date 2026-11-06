@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>redirect</title>
+    <style>
+        body {
+            font-family: 'Roboto', helvetica, arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* キャプチャ全体の枠組み */
+        .captcha-container {
+            width: 300px;
+            height: 74px;
+            background-color: #f9f9f9;
+            border: 1px solid #d3d3d3;
+            border-radius: 3px;
+            box-shadow: 0 0 4px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px 0 14px;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        .captcha-left {
+            display: flex;
+            align-items: center;
+        }
+
+        /* チェックボックス部分のラッパー */
+        .checkbox-wrapper {
+            position: relative;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+        }
+
+        /* 実際のチェックボックス（見た目は隠す） */
+        .real-checkbox {
+            opacity: 0;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 3;
+            margin: 0;
+        }
+
+        /* カスタムチェックボックスの初期状態 */
+        .custom-checkbox {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 24px;
+            height: 24px;
+            background-color: #fff;
+            border: 2px solid #c1c1c1;
+            border-radius: 2px;
+            z-index: 1;
+            transition: border-color 0.2s;
+        }
+
+        .real-checkbox:hover ~ .custom-checkbox {
+            border-color: #b2b2b2;
+        }
+
+        /* ローディングアニメーション（ぐるぐる） */
+        .loading-spinner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #4d90fe;
+            border-top-color: transparent;
+            border-radius: 50%;
+            z-index: 2;
+            box-sizing: border-box;
+            display: none;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* チェック完了時の緑マーク */
+        .checkmark {
+            position: absolute;
+            top: 2px;
+            left: 7px;
+            width: 8px;
+            height: 14px;
+            border: solid #00aa47;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+            z-index: 2;
+            display: none;
+        }
+
+        /* テキスト部分 */
+        .captcha-text {
+            color: #2b2b2b;
+            font-size: 14px;
+            font-weight: 400;
+            margin-left: 14px;
+            cursor: pointer;
+        }
+
+        /* 右側のロゴとプライバシーリンク */
+        .captcha-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 70px;
+        }
+
+        .recaptcha-logo {
+            width: 32px;
+            height: 32px;
+            background-image: url('https://gstatic.com');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .policy-links {
+            font-size: 8px;
+            color: #555;
+            line-height: 1.2;
+            margin-top: 2px;
+        }
+
+        .policy-links a {
+            color: #555;
+            text-decoration: none;
+        }
+
+        .policy-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="captcha-container">
+        <div class="captcha-left">
+            <div class="checkbox-wrapper">
+                <input type="checkbox" id="robot-check" class="real-checkbox">
+                <div class="custom-checkbox" id="box-view"></div>
+                <div class="loading-spinner" id="spinner"></div>
+                <div class="checkmark" id="check-icon"></div>
+            </div>
+            <label for="robot-check" class="captcha-text">私はロボットではありません</label>
+        </div>
+        
+        <div class="captcha-right">
+            <div class="recaptcha-logo"></div>
+            <div class="policy-links">
+                <a href="https://google.com" target="_blank">プライバシー</a><br>
+                <a href="https://google.com" target="_blank">利用規約</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const checkbox = document.getElementById('robot-check');
+        const boxView = document.getElementById('box-view');
+        const spinner = document.getElementById('spinner');
+        const checkIcon = document.getElementById('check-icon');
+
+        // URLから "?url=xxx" の値を取得する関数
+        function getTargetUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('url');
+        }
+
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                // 連打防止
+                checkbox.style.pointerEvents = 'none';
+                
+                // ぐるぐるアニメーションの開始
+                boxView.style.display = 'none';
+                spinner.style.display = 'block';
+
+                // 1.2秒後にチェックマークを表示し、その後ページ遷移
+                setTimeout(() => {
+                    spinner.style.display = 'none';
+                    checkIcon.style.display = 'block';
+
+                    // URLパラメータを取得
+                    const targetUrl = getTargetUrl();
+
+                    // パラメータが設定されている場合のみ、さらに0.5秒後に遷移
+                    if (targetUrl) {
+                        setTimeout(() => {
+                            window.location.href = targetUrl;
+                        }, 500); 
+                    } else {
+                        alert('URLが指定されていません。アドレスバーの末尾に「?url=移動したいURL」を付けて試してください。');
+                    }
+                }, 1200);
+            }
+        });
+    </script>
+
+</body>
+</html>
